@@ -1,0 +1,49 @@
+
+{% extends "practica_mvc/inicial.html" %}
+
+{% load staticfiles %}
+
+{% block title %} Facturas{% endblock %}
+
+{% block body %}
+<div class="reserver"></div>
+<div class="reserver"></div>
+<a href="{% url 'practica_mvc.views.crear_factura' %}">Crear una factura</a>
+{% if facturas %}
+	<table class="egt">
+	  <tr>
+	    <th>numero de factura</th>
+	    <th>nombre empresa</th>
+	    <th>fecha de pago</th>
+	    <th>cantidad</th>
+	    <th>estado</th>
+	    <th>editar</th>
+	    <th>eliminar</th>
+	  </tr>
+
+    {% for factura in facturas %}
+    	<tr>
+		    <th>{{ factura.numero_factura}}</th>
+		    <th>{{ factura.empresa }}</th>
+		    <th>{{ factura.fecha_pago }}</th>
+		    <th>{{ factura.cantidad }}</th>
+		    <th>{{ factura.estado }}</th>
+
+		    <th><a value="editar" href="{% url 'practica_mvc.views.actualizar_factura' num_factura=factura.pk %}">Editar</a></th>
+
+		    <th><a value="eliminar" href="{% url 'practica_mvc.views.eliminar_factura' num_factura=factura.pk %}">Eliminar</a></th>
+	  	</tr>
+	  	
+        
+    {% endfor %}
+    </table>
+	{% else %}
+	    <p>No hay facturas que listar!</p>
+
+
+	{% endif %}
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'practica_mvc/base.html' %}
+	{% block title %} Actualizar factura                
+    {% endblock %}
+
+
+    {% block content %}
+        <h1>Actualizar factura</h1>
+        <form method="POST" class="factura-form">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Actualizar</button>
+        </form>
+    {% endblock %}
