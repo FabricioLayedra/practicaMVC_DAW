@@ -1,4 +1,4 @@
-
+from django.contrib.staticfiles.views import serve
 from django.conf.urls import include, url
 from django.contrib import admin
 admin.autodiscover()
@@ -14,6 +14,7 @@ router.register(r'recibos', ReciboViewSet)
 
 urlpatterns = [
         # url(r'^$', views.get_name),
+        url(r'^$', serve,kwargs={'path': 'index.html'}),
         url(r'^$', views.mostrar_principal,name='mostrar_principal'),
 
         url(r'^thanks/', views.show_name),
@@ -30,4 +31,5 @@ urlpatterns = [
         url(r'^recibos/create/$', views.crear_recibo,name='crear_recibo'),
         url(r'^', include(router.urls)),
         url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+        url(r'^(?P<path>.*)/$', views.index),
     ]

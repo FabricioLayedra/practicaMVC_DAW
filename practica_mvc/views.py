@@ -4,7 +4,11 @@ from .models import Factura,Recibo
 from .forms import FacturaForm,ReciboForm
 import psycopg2 as pg
 from .form import VoluntaryForm
-
+def index(request, path=''):
+    """
+    Renders the Angular2 SPA
+    """
+    return render(request, 'index.html')
 def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
